@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
-public class THEEPICGAMECODE : MonoBehaviour
+public class Unit1Assignment : MonoBehaviour
 {
     Animator anim;
     SpriteRenderer sr;
@@ -51,20 +51,17 @@ public class THEEPICGAMECODE : MonoBehaviour
             }
         }
         int jumpAmount = 2;
-        
-        bool hit;
-        if (Input.GetKeyDown("w"))
+
+        if (helper.ExtendedRayCollisionCheck(0, 0.1f) == true)
         {
-            hit = helper.ExtendedRayCollisionCheck(0, 0.1f);
-            if (hit == true)
+            if (Input.GetKeyDown("w"))
             {
+
                 rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
                 anim.SetBool("Jump", true);
-                
-                
-
             }
         }
+        
 
 
         if (Input.GetKeyDown("q"))

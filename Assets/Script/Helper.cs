@@ -32,7 +32,7 @@ public class Helper : MonoBehaviour
 
     public bool ExtendedRayCollisionCheck(float xoffs, float yoffs)
     {
-        float rayLength = 0.5f;
+        float rayLength = 0.23f;
         bool hitSomething = false;
 
 
