@@ -56,7 +56,6 @@ public class Unit1Assignment : MonoBehaviour
         {
             if (Input.GetKeyDown("w"))
             {
-
                 rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
                 anim.SetBool("Jump", true);
             }
