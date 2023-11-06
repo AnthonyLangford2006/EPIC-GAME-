@@ -10,6 +10,9 @@ public class Unit1Assignment : MonoBehaviour
     Rigidbody2D rb;
     Helper helper;
     public GameObject weapon;
+    int speed;
+    bool isJumping;
+    GameObject Player;
 
     // Start is called before the first frame update
     void Start()
@@ -19,37 +22,54 @@ public class Unit1Assignment : MonoBehaviour
         sr = GetComponent<SpriteRenderer>();
         helper = gameObject.AddComponent<Helper>();
 
+        speed = 1;
+        isJumping = false;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        anim.SetBool("Jump", false);
+        
         anim.SetBool("Run", false);
-        int speed = 1;
+        
 
         DoRun();
+        DoJump();
+        DoAttack();
+        DoLand();
 
-        void DoRun()
+
+
+
+    }
+
+    void DoRun()
+    {
+        if (Input.GetKey("a") == true)
         {
-            if (Input.GetKey("a") == true)
-            {
-               
-                transform.position = new Vector2(transform.position.x - (speed * Time.deltaTime), transform.position.y);
-                anim.SetBool("Run", true);
-                sr.flipX = true;
-               
-            }
 
+            transform.position = new Vector2(transform.position.x - (speed * Time.deltaTime), transform.position.y);
+            anim.SetBool("Run", true);
+            sr.flipX = true;
 
-            if (Input.GetKey("d") == true)
-            {
-               
-                transform.position = new Vector2(transform.position.x + (speed * Time.deltaTime), transform.position.y);
-                anim.SetBool("Run", true);
-                sr.flipX = false;
-            }
         }
+
+
+        if (Input.GetKey("d") == true)
+        {
+
+            transform.position = new Vector2(transform.position.x + (speed * Time.deltaTime), transform.position.y);
+            anim.SetBool("Run", true);
+            sr.flipX = false;
+        }
+    }
+
+
+
+    void DoJump()
+    {
+
         int jumpAmount = 2;
 
         if (helper.ExtendedRayCollisionCheck(0, 0.1f) == true)
@@ -58,16 +78,21 @@ public class Unit1Assignment : MonoBehaviour
             {
                 rb.AddForce(Vector2.up * jumpAmount, ForceMode2D.Impulse);
                 anim.SetBool("Jump", true);
+                isJumping = true;
             }
         }
-        
+    }
 
 
+    void DoAttack()
+    {
         if (Input.GetKeyDown("q"))
         {
             print("player pressed attack");
+            anim.SetTrigger("Attack1");
            
         }
+
         int moveDirection = 1;
         if (Input.GetButtonDown("Fire1"))
         {
@@ -88,8 +113,26 @@ public class Unit1Assignment : MonoBehaviour
             rb.transform.position = new Vector3(transform.position.x, transform.position.y +
             2, transform.position.z + 1);
         }
+    }
 
+    void DoLand()
+    {
+        if( isJumping == true )
+        {
+            if( rb.velocity.y <= 0 )
+            {
+                // add a fall anim
 
+                if (helper.ExtendedRayCollisionCheck(0, 0.1f) == true)
+                {
+                    isJumping = false;
+                    anim.SetBool("Jump", false);
+                }
+
+            }
+        }
 
     }
+
+
 }
