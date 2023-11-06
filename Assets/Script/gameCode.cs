@@ -12,7 +12,7 @@ public class Unit1Assignment : MonoBehaviour
     public GameObject weapon;
     int speed;
     bool isJumping;
-    GameObject Player;
+   
 
     // Start is called before the first frame update
     void Start()
