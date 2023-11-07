@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b5d402f598c2042759f69fa56f14b05b
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 27680
+  packageName: 'UPA Toolkit: Pixel Art Editor'
+  packageVersion: 2.2.1
+  assetPath: Assets/UPAToolkit/Editor/UPAImage.cs
+  uploadId: 74135
