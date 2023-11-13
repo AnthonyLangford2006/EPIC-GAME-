@@ -38,11 +38,11 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector2(transform.position.x + (-0.2f * Time.deltaTime), transform.position.y);
         }
     }
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.name == "player")
+        if (collision.gameObject.tag == "Player")
         {
-            Destroy(other.gameObject);
+            Destroy(collision.gameObject);
 
 
         }
